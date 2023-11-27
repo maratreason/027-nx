@@ -5,9 +5,15 @@ import {API_URL} from "@users/core/http";
 import {provideStore, provideState} from "@ngrx/store";
 import {provideStoreDevtools} from "@ngrx/store-devtools";
 import {provideEffects} from "@ngrx/effects";
-import {USERS_FEATURE_KEY, usersReducer, UsersFacade, usersEffects} from "@users/users/data-access";
+import {
+  USERS_FEATURE_KEY,
+  usersReducer,
+  UsersFacade,
+  usersEffects,
+} from "@users/users/data-access";
 import {appRoutes} from "./app.routes";
 import {environment} from "../environments/environment.development";
+import {provideNoopAnimations} from "@angular/platform-browser/animations";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,5 +30,6 @@ export const appConfig: ApplicationConfig = {
       provide: API_URL,
       useValue: environment.api_url,
     },
+    provideNoopAnimations(),
   ],
 };

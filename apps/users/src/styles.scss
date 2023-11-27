@@ -1,1 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 1280px;
+  margin: 0 auto;
+
+  @media screen and (max-width: 1280px) {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+}
+
+.add-user-fab-button {
+  position: fixed !important;
+  bottom: 16px !important;
+  right: 16px !important;
+}
+
+.main {
+  padding: 50px 0;
+  min-height: 100vh;
+  flex: 1 0 auto !important;
+}
+
+.footer {
+}

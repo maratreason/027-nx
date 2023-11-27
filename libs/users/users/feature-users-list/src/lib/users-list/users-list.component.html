@@ -1,16 +1,17 @@
-<p>users-list UI works!</p>
 <ng-container *ngIf="vm.status === 'loading'; else loadingResult">
   <h1>Загрузка...</h1>
 </ng-container>
 
 <ng-template #loadingResult>
   <ng-container *ngIf="vm.status === 'loaded'; else error">
-    <pre>
-      {{vm | json}}
-    </pre>
+    <div class="users-wrapper">
+      <ng-container *ngFor="let user of vm.users">
+        <users-card [user]="user" (deleteUser)="onDeleteUser(user)"></users-card>
+      </ng-container>
+    </div>
   </ng-container>
 </ng-template>
 
 <ng-template #error>
-  <h1 style="color: red;">Произошла ошибка.</h1>
+  <h1 style="color: red">Произошла ошибка.</h1>
 </ng-template>

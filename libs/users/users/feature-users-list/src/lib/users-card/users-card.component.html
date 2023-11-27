@@ -1,0 +1,12 @@
+<mat-card class="example-card">
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="">
+  <mat-card-content style="margin: 20px 0 10px;">
+    <h2>{{user.name}}</h2>
+    <p style="font-size: 18px; color:cadetblue">{{user.username}}</p>
+    <p style="color:coral">{{user.email}}</p>
+  </mat-card-content>
+  <mat-card-actions style="gap: 10px;">
+    <button mat-raised-button color="warn" (click)="onDeleteUser()"><mat-icon>delete</mat-icon> Удалить</button>
+    <button mat-raised-button color="accent"><mat-icon>edit</mat-icon> Редактировать</button>
+  </mat-card-actions>
+</mat-card>
