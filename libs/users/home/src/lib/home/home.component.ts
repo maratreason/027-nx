@@ -1,13 +1,12 @@
 import {ChangeDetectionStrategy, Component} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {UsersListContainerComponent} from "@users/feature-users";
-import {MatButtonModule} from "@angular/material/button";
-import {MatIconModule} from "@angular/material/icon";
+import {CreateUsersButtonComponent} from "@users/feature-users-create";
 
 @Component({
   selector: "users-home",
   standalone: true,
-  imports: [CommonModule, UsersListContainerComponent, MatButtonModule, MatIconModule],
+  imports: [CommonModule, UsersListContainerComponent, CreateUsersButtonComponent],
   templateUrl: "./home.component.html",
   styleUrl: "./home.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
