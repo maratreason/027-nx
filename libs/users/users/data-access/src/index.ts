@@ -4,3 +4,4 @@ export * from "./lib/+state/users.selectors";
 export * from "./lib/+state/users.reducer";
 export * from "./lib/+state/users.actions";
 export * as usersEffects from "./lib/+state/users.effects";
+export * from "./lib/users-dto.model";

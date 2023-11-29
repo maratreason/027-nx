@@ -22,7 +22,6 @@ export const usersAdapter: EntityAdapter<UsersEntity> =
   createEntityAdapter<UsersEntity>();
 
 export const initialUsersState: UsersState = usersAdapter.getInitialState({
-  // set initial required properties
   status: "init",
   error: null,
 });

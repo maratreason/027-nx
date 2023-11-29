@@ -3,7 +3,7 @@ import {createEffect, Actions, ofType} from "@ngrx/effects";
 import {ApiService} from "@users/core/http";
 import {switchMap, catchError, of, map} from "rxjs";
 import {usersDTOAdapter} from "../users-dto.adapter";
-import {CreateUserDTO, UsersDTO} from "../users-dto.model";
+import {CreateUsersDTO, UsersDTO} from "../users-dto.model";
 import * as UsersActions from "./users.actions";
 
 export const usersEffects = createEffect(
@@ -15,9 +15,11 @@ export const usersEffects = createEffect(
       ofType(UsersActions.initUsers),
       switchMap(() =>
         apiService.get<UsersDTO[]>("/users").pipe(
-          map((users) => UsersActions.loadUsersSuccess({
-            users: users.map(user => usersDTOAdapter.DTOtoEntity(user))
-          })),
+          map((users) =>
+            UsersActions.loadUsersSuccess({
+              users: users.map((user) => usersDTOAdapter.DTOtoEntity(user)),
+            })
+          ),
           catchError((error) => {
             console.error("Error", error);
             return of(UsersActions.loadUsersFailure({error}));
@@ -36,7 +38,8 @@ export const deleteUser = createEffect(
 
     return actions$.pipe(
       ofType(UsersActions.deleteUser),
-      switchMap(({id}) => apiService.get<UsersDTO[]>(`/users/${id}`).pipe(
+      switchMap(({id}) =>
+        apiService.get<UsersDTO[]>(`/users/${id}`).pipe(
           map(() => UsersActions.deleteUserSuccess({id})),
           catchError((error) => {
             console.error("Error", error);
@@ -56,13 +59,16 @@ export const createUser = createEffect(
 
     return actions$.pipe(
       ofType(UsersActions.createUser),
-      switchMap(({user}) => apiService.post<UsersDTO, CreateUserDTO>(`/users`, user).pipe(
+      switchMap(({user}) => {
+        return apiService.post<UsersDTO, CreateUsersDTO>(`/users`, user).pipe(
           map((u) => UsersActions.createUserSuccess({user: u})),
           catchError((error) => {
             console.error("Error", error);
             return of(UsersActions.createUserFailed({error}));
           })
         )
+      }
+
       )
     );
   },

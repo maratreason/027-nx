@@ -24,7 +24,7 @@ export class UsersListContainerStore extends ComponentStore<UsersListState> {
   public readonly users$ = this.select(({users}) => users); // this.select(state => state.users);
   public readonly status$ = this.select(
     this.usersFacade.status$,
-    status => status
+    (status) => status
   );
 
   constructor() {
@@ -62,5 +62,4 @@ export class UsersListContainerStore extends ComponentStore<UsersListState> {
       )
     );
   }
-
 }

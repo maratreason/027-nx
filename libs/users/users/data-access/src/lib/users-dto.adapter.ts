@@ -1,29 +1,22 @@
 import {UsersEntity} from "./+state/users.entity";
-import {UsersDTO} from "./users-dto.model";
+import {CreateUsersDTO, UsersDTO} from "./users-dto.model";
 
 type UsersDTOAdapter = {
   DTOtoEntity(dto: UsersDTO): UsersEntity;
-  entityToDTO(entity: UsersEntity): UsersDTO;
+  entityToDTO(entity: UsersEntity): CreateUsersDTO;
 };
 
 export const usersDTOAdapter: UsersDTOAdapter = {
   DTOtoEntity(dto) {
-    const {geo, ...otherAddressFields} = dto.address;
+    const {created_at, ...otherAddressFields} = dto;
 
     return {
-      ...dto,
-      address: {
-        ...otherAddressFields,
-      },
+      ...otherAddressFields,
     };
   },
   entityToDTO(entity) {
     return {
       ...entity,
-      address: {
-        ...entity.address,
-        geo: {lat: "", lng: ""},
-      },
     };
   },
 };
